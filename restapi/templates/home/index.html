@@ -8,13 +8,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
     <body>
-        {% if messages %}
-            {% for message in messages %}
-            <script>
-                M.toast('{{ message }}', 3000);
-            </script>
-            {% endfor %}
-        {% endif %}
         <nav>
             <div class="nav-wrapper teal darken-3">
                 <a href="/" class="brand-logo center">{% block heading %}REKORDS{% endblock %}</a>
