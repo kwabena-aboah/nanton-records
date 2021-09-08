@@ -246,7 +246,7 @@ LOGGING = {
     "loggers": {"django.request": {"handlers": ["mail_admins"], "level": "ERROR", "propagate": True}},
 }
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
 DROPBOX_OAUTH2_TOKEN = 'NpBdmHRoXXgAAAAAAAAAAUA0CfczQd078mOg-Lnbgytp0AVO1yl8g3gE15xWYNxI'
 DROPBOX_CONSUMER_KEY = 'ftfzhq8n8i5hu9o'
