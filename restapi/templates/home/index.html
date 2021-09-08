@@ -1,0 +1,160 @@
+{% load static %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>REKORDS | Pilot</title>
+        <link rel="stylesheet" href="{% static 'fonts/css/fontawesome.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}" media="screen,projection">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        {% if messages %}
+            {% for message in messages %}
+            <script>
+                M.toast('{{ message }}', 3000);
+            </script>
+            {% endfor %}
+        {% endif %}
+        <nav>
+            <div class="nav-wrapper teal darken-3">
+                <a href="/" class="brand-logo center">{% block heading %}REKORDS{% endblock %}</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger" style="font-size: 40px;">=</a>
+            </div>
+        </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{% static 'img/logo.jpg' %}" class="center">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="waves-effect waves-grey" href="/">Home</a></li>
+            <li><a class="waves-effect waves-grey section scrollspy" href="#endpoints">Example</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <!-- <li><a class="waves-effect waves-grey section scrollspy" href="#aboutus">About this project</a></li> -->
+        </ul>
+        
+        <div class='row'>
+            <div class="col s12 m3 l3 sidebar fixed">
+                <div class="container">
+                    <ul class="hide-on-med-and-down">
+                        <li>
+                            <div class="user-view">
+                                <div class="background">
+                                    <img src="{% static 'img/logo.jpg' %}" class="center">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                        <li><a class="waves-effect waves-grey" href="/">Home</a></li>
+                        <li><a class="waves-effect waves-grey section scrollspy" href="#endpoints">Example</a></li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                        <!-- <li><a class="waves-effect waves-grey section scrollspy" href="#aboutus">About this project</a></li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col s12 m9 l9">
+                <div class="container">
+                    <div>
+                        <header class="card-panel teal darken-3 white-text">
+                            <h3>Welcome to Rekords</h3>
+                            <p>Hurray!! Server is Running</p>
+                        </header>
+                        <div class="divider"></div>
+                        <main class="card-panel">
+                            <h3>Endpoints</h3>
+                            <p>The backend consists of three API endpoints for building the frontend.<br>
+                            The first endpoint is for the users and userprofiles: <a href="/api/profile/">/api/profile/</a><br>
+                            The second endpoint is for the received records: <a href="/api/received/">/api/received/</a><br>
+                            The last endpoint is for the dispatched records: <a href="/api/dispatched/">/api/dispatched/</a></p>
+                        </main>
+                    </div>
+                    <div id="endpoints" class="card-panel">
+                        <h3>Example</h3>
+                        <h5>The json output of the received records endpoint is represented below:</h5>
+                        <div class="divider"></div>
+                        <code>
+                            HTTP 200 OK
+                            Allow: GET, POST, HEAD, OPTIONS
+                            Content-Type: application/json
+                            Vary: Accept
+
+                            [
+                            {
+                            "user": "mintahkwabena13@gmail.com",
+                            "to_whom_received": "DRO",
+                            "date_of_letter": "2021-09-07",
+                            "reference_number": "AD / DFO / 21",
+                            "subject": "Just a random script for testing!!",
+                            "remarks": "Received",
+                            "file_directory": "http://127.0.0.1:8000/media/received-files/21-09-07/email_list.docx",
+                            "date_recieved": "2021-09-07T12:48:57Z"
+                            },
+                            {
+                            "user": "mintahkwabena13@gmail.com",
+                            "to_whom_received": "MFO",
+                            "date_of_letter": "2021-09-07",
+                            "reference_number": "HR / FF3 / 09",
+                            "subject": "just for test",
+                            "remarks": "Received",
+                            "file_directory": "http://127.0.0.1:8000/media/received-files/21-09-07/NDA...pdf",
+                            "date_recieved": "2021-09-07T16:35:27Z"
+                            }
+                            ]
+                        </code>
+                        <div class="divider"></div>
+                        <h5>The json output of the dispatched records endpoint is represented below:</h5>
+                        <div class="divider"></div>
+                        <code>
+                            HTTP 200 OK
+                            Allow: GET, POST, HEAD, OPTIONS
+                            Content-Type: application/json
+                            Vary: Accept
+                            
+                            [
+                            {
+                            "user": "mintahkwabena13@gmail.com",
+                            "to_whom_sent": "DFO",
+                            "date_of_letter": "2021-09-07",
+                            "reference_number": "CF / DFO / 22",
+                            "subject": "Just for testing purpose",
+                            "remarks": "Sent",
+                            "file_directory": "http://127.0.0.1:8000/media/dispatched-files/21-09-07/CamScanner_08-12-2020_10.53.17_1.pdf",
+                            "date_dispatched": "2021-09-07T16:11:11Z"
+                            },
+                            {
+                            "user": "mintahkwabena13@gmail.com",
+                            "to_whom_sent": "HR",
+                            "date_of_letter": "2021-09-07",
+                            "reference_number": "HR / FF3 / 09",
+                            "subject": "Another testing routine",
+                            "remarks": "Sent",
+                            "file_directory":
+                            "http://127.0.0.1:8000/media/dispatched-files/21-09-07/invitation_-_workplan_review_meeting_Oefa2OJ.pdf",
+                            "date_dispatched": "2021-09-07T16:13:05Z"
+                            }
+                            ]
+                        </code>
+                    </div>
+                    <!-- <div id="aboutus" class="card-panel"></div> -->
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+        <script>
+            M.AutoInit();
+        </script>
+    </body>
+</html>

@@ -21,16 +21,17 @@ from django.conf.urls.static import static
 from django.views.static import serve
 from rest_framework import routers
 from users.views import UserProfileViewset
-from restapi.views import ReceivedViewset, DispatchedViewset
+from restapi.views import ReceivedViewset, DispatchedViewset, home
 
 router = routers.DefaultRouter()
-router.register(r'api/profile', UserProfileViewset)
-router.register(r'api/received', ReceivedViewset)
-router.register(r'api/dispatched', DispatchedViewset)
+router.register(r'profile', UserProfileViewset)
+router.register(r'received', ReceivedViewset)
+router.register(r'dispatched', DispatchedViewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('', home, name='index'),
+    path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     url(r'^media/(?P<path>.*)$', serve,
         {'document_root': settings.MEDIA_ROOT}),
