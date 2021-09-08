@@ -20,10 +20,11 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.views.static import serve
 from rest_framework import routers
-from users.views import UserProfileViewset
+from users.views import UserProfileViewset, UserViewset
 from restapi.views import ReceivedViewset, DispatchedViewset, home
 
 router = routers.DefaultRouter()
+router.register(r'users', UserViewset)
 router.register(r'profile', UserProfileViewset)
 router.register(r'received', ReceivedViewset)
 router.register(r'dispatched', DispatchedViewset)
