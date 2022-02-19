@@ -12,7 +12,7 @@ admin.site.site_url = "/"
 @admin.register(Received)
 class ReceivedAdmin(admin.ModelAdmin):
     fields = (
-        'to_whom_received', 'date_of_letter', 
+        'registry_number', 'to_whom_received', 'date_of_letter', 
         'reference_number', 'subject', 'remarks', 
         'file_directory', 'date_recieved'
         )
@@ -33,13 +33,13 @@ class ReceivedAdmin(admin.ModelAdmin):
     list_per_page = 10
     
     def save_model(self, request, obj, form, change):
-        strings = 4
-        randoms = ''.join(random.choices(string.ascii_uppercase + string.digits, k = strings))
+        # strings = 4
+        # randoms = ''.join(random.choices(string.ascii_uppercase + string.digits, k = strings))
         '''Automatically generate registry number'''
-        if getattr(obj, 'registry_number', True) is not None:
+        if getattr(obj, 'id', True) is not None:
             self.user = request.user
-            self.registry_number = '{randoms}{user:04d}'.format(
-                user=Received.objects.count(), randoms=str(randoms))
+            # self.registry_number = '{randoms}{user:04d}'.format(
+            #     user=Received.objects.count(), randoms=str(randoms))
             obj.save()
         super().save_model(request, obj, form, change)
 
@@ -47,7 +47,7 @@ class ReceivedAdmin(admin.ModelAdmin):
 @admin.register(Dispatched)
 class DispatchedAdmin(admin.ModelAdmin):
     fields = (
-        'to_whom_sent', 'date_of_letter', 
+        'registry_number', 'to_whom_sent', 'date_of_letter', 
         'reference_number', 'subject', 'remarks', 
         'file_directory', 'date_dispatched'
         )
@@ -68,12 +68,12 @@ class DispatchedAdmin(admin.ModelAdmin):
     list_per_page = 10
     
     def save_model(self, request, obj, form, change):
-        strings = 4
-        randoms = ''.join(random.choices(string.ascii_uppercase + string.digits, k = strings))
+        # strings = 4
+        # randoms = ''.join(random.choices(string.ascii_uppercase + string.digits, k = strings))
         '''Automatically generate registry number'''
-        if getattr(obj, 'registry_number', True) is not None:
+        if getattr(obj, 'id', True) is not None:
             self.user = request.user
-            self.registry_number = '{randoms}{user:04d}'.format(
-                user=Dispatched.objects.count(), randoms=str(randoms))
+            # self.registry_number = '{randoms}{user:04d}'.format(
+            #     user=Dispatched.objects.count(), randoms=str(randoms))
             obj.save()
         super().save_model(request, obj, form, change)
